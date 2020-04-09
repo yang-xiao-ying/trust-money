@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>一起看电影</title>
+    <style>
+        .image-2233 {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            z-index: -1;
+        }
+
+        .elegant-aero {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 2%;
+            max-width: 500px;
+            background: #D2E9FF;
+            padding: 20px 20px 20px 20px;
+            font: 12px Arial, Helvetica, sans-serif;
+            color: #666;
+        }
+
+
+        .elegant-aero label > span {
+            float: left;
+            margin-top: 10px;
+            color: #5E5E5E;
+        }
+
+        .elegant-aero label {
+            display: block;
+            margin: 0px 0px 5px;
+        }
+
+        .elegant-aero label > span {
+            float: left;
+            width: 20%;
+            text-align: right;
+            padding-right: 15px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .elegant-aero input[type="text"], .elegant-aero input[type="email"], .elegant-aero textarea, .elegant-aero select {
+            color: #888;
+            width: 70%;
+            padding: 0px 0px 0px 5px;
+            border: 1px solid #C5E2FF;
+            background: #FBFBFB;
+            outline: 0;
+            -webkit-box-shadow: inset 0px 1px 6px #ECF3F5;
+            box-shadow: inset 0px 1px 6px #ECF3F5;
+            font: 200 12px/25px Arial, Helvetica, sans-serif;
+            height: 30px;
+            line-height: 15px;
+            margin: 2px 6px 16px 0px;
+        }
+
+        .elegant-aero h1 {
+            font: 24px "Trebuchet MS", Arial, Helvetica, sans-serif;
+            padding: 10px 10px 10px 20px;
+            display: block;
+            background: #C0E1FF;
+            border-bottom: 1px solid #B8DDFF;
+            margin: -20px -20px 15px;
+        }
+
+        .elegant-aero .button {
+            padding: 10px 30px 10px 30px;
+            background: #66C1E4;
+            border: none;
+            color: #FFF;
+            box-shadow: 1px 1px 1px #4C6E91;
+            -webkit-box-shadow: 1px 1px 1px #4C6E91;
+            -moz-box-shadow: 1px 1px 1px #4C6E91;
+            text-shadow: 1px 1px 1px #5079A3;
+
+        }
+
+        .elegant-aero .button:hover {
+            background: #3EB1DD;
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+<form action="/seek" method="post" class="elegant-aero">
+    <label>
+        <span> 电影名 </span>
+        <input id="name" name="name" style="width: 300px"/>
+
+    </label>
+    <br>
+    <label>
+        <span> 评分数 </span>
+        <input id="score" name="score" style="width: 300px"/>
+    </label>
+
+    <label>
+        <span>&nbsp;</span>
+        <input type="submit" class="button" value="提交"/>
+    </label>
+</form>
+
+ <table class="table table-striped table-bordered table-info" border="1" cellspacing="0">
+        <thead>
+        <tr style="background-color: #B8DDFF">
+            <th>电影名</th>
+            <th>别名</th>
+            <th>评分</th>
+            <th>评语</th>
+            <th>封面地址</th>
+        </tr>
+        </thead>
+
+        <tbody id="test">
+        {% for t in ms %}
+        <tr>
+            <td>{{ t.name }}</td>
+            <td>{{ t.other }}</td>
+            <td>{{ t.score }}</td>
+            <td>{{ t.quote }}</td>
+            <td ><a href="{{ t.cover_url }}">{{ t.cover_url }}</a></td>
+                </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+</body>
+</html>
