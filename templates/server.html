@@ -92,16 +92,17 @@
 <body>
 
 <form action="/seek" method="post" class="elegant-aero">
-    <label>
+    <div>
         <span> 电影名 </span>
-        <input id="name" name="name" style="width: 300px"/>
+        <input id="btn" name="name" style="width: 300px"/>
+        <ul id="ul"> </ul>
+    </div>
 
-    </label>
     <br>
-    <label>
+    <div>
         <span> 评分数 </span>
         <input id="score" name="score" style="width: 300px"/>
-    </label>
+    </div>
 
     <label>
         <span>&nbsp;</span>
@@ -120,7 +121,7 @@
         </tr>
         </thead>
 
-        <tbody id="test">
+        <tbody id="test" >
         {% for t in ms %}
         <tr>
             <td>{{ t.name }}</td>
@@ -136,4 +137,42 @@
 
     </table>
 </body>
+
+<script>
+        var input = document.getElementById('btn')
+        var oUl = document.getElementById('ul')
+
+        input.onkeyup = function () {
+            var value = this.value;
+            var oScript = document.createElement('script');
+            oScript.src = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=' + value + '&cb=aa'
+            // 核心在这里，
+            // 1.实时获取参数 value
+            // 2.cb=返回值的处理函数（aa）
+            console.log(oScript)
+
+            document.body.appendChild(oScript)
+        }
+        function aa(data) {
+            oUl.style.display = 'block';
+            var list = data.s;
+            var str = '';
+            if (list.length > 0) {
+                list.forEach(function (ele, index) {
+                    str += '<span id="' + index;
+                    str += '" onclick=myclick("' + index + '")';
+                    str += '>';
+                    str +=  ele + '</span>' + '<br>';
+                })
+                oUl.innerHTML = str;
+            } else {
+                oUl.style.display = 'none';
+            }
+        }
+
+        function myclick(index){
+        document.getElementById('btn').value = document.getElementById(index).innerHTML
+}
+
+    </script>
 </html>

@@ -85,7 +85,7 @@ def movie_from_div(div):
     mydb = mysql.linkDatabase()
     mycursor = mydb.cursor()
     mycursor.execute(sql, val)
-    mydb.commit()  # 数据表内容有更新，必须使用到该语句
+    mydb.commit()
     print(mycursor.rowcount, "记录插入成功。")
     return m
 
@@ -124,6 +124,4 @@ def main():
 
 
 if __name__ == '__main__':
-    # creatDatabase()
-    # creatTable()
     main()

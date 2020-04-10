@@ -2,7 +2,8 @@ import pymysql
 
 
 class mysql():
-    def creatDatabase(self):
+    @staticmethod
+    def creatDatabase():
         mydb = pymysql.Connect(
             host='localhost',
             port=3306,
@@ -12,6 +13,8 @@ class mysql():
         mycursor = mydb.cursor()
         mycursor.execute("CREATE DATABASE movieslist")
         mycursor.execute("SHOW DATABASES")
+        for x in mycursor:
+            print(x)
 
     @staticmethod
     def linkDatabase():
@@ -21,7 +24,6 @@ class mysql():
             user='root',
             passwd='zaoshuizaoqi',
             database="movieslist",
-            charset='utf8mb4'
         )
         return mydb
 
@@ -34,3 +36,6 @@ def creatTable():
     mycursor.execute("SHOW TABLES")
     for x in mycursor:
         print(x)
+
+# mysql.creatDatabase()
+# creatTable()

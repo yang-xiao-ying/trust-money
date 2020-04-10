@@ -16,6 +16,7 @@ def hello_world():
 def getMovieInfo(sql):
     info = []
     mydb = mysql.linkDatabase()
+    print(mydb)
     mycursor = mydb.cursor()
     try:
 
@@ -41,6 +42,7 @@ def getMovieInfo(sql):
 @app.route("/seek", methods=['POST'])
 def register():
     form = request.form.to_dict()
+    print(form)
     name = form['name']
     score = form['score']
     ms = []
@@ -48,15 +50,12 @@ def register():
         sql = "select * from movies where name like '{}%'".format(name)
         ms = getMovieInfo(sql)
         print(ms)
-        # return render_template("server.html", ms=ms)
     elif score:
         sql = "select * from movies where score={}".format(score)
         ms = getMovieInfo(sql)
         print(ms)
-        # return render_template("server.html", ms=ms)
     return render_template("server.html", ms=ms)
 
 
 if __name__ == '__main__':
     app.run()
-    # getMovieInfo('肖申克的救赎')
